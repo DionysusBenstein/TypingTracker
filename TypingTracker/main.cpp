@@ -256,7 +256,6 @@ int save(int key)
 		}
 		else
 		{
-
 			sLogs += "d";
 		}
 		break;
