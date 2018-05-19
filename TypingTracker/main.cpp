@@ -1,6 +1,6 @@
 ﻿/*******************************************************************/
 
-/* Original File Name: main.cpp			                           */
+/* Original File Name: main.cpp                                    */
 
 /* Date: 19-05-2018                                                */
 
@@ -9,7 +9,7 @@
 /* Copyright © 2018 Dionysus Benstein. All rights reserved.        */
 
 /* Description: The main file that defines the entry point for	   
-				the application.								   */
+				the application.                                   */
 
 /*******************************************************************/
 
