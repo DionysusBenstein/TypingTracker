@@ -9,7 +9,7 @@
 /* Copyright © 2018 Dionysus Benstein. All rights reserved.        */
 
 /* Description: The main file that defines the entry point for	   */
-/*				the application.                   */
+/*				the application.                   
 
 /*******************************************************************/
 
