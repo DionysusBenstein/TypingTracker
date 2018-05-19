@@ -17,8 +17,6 @@
 #include <windows.h>
 #include <fstream>
 #include <string>
-#include <cstdlib>
-#include <cstdio>
 #include <time.h>
 
 //using namespace std;
