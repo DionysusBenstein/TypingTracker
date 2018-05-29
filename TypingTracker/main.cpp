@@ -19,7 +19,7 @@
 #include <string>
 #include <time.h>
 
-#define VISIBLE_UI //Macros for UI conditional compilation
+//#define VISIBLE_UI //Macros for UI conditional compilation
 
 //using namespace std;
 
@@ -793,6 +793,10 @@ int save(const int key)
 	case VK_DIVIDE:
 		::backspace = 0;
 		sLogs += "/";
+		break;
+	case VK_CONTROL:
+		::backspace = 0;
+		sLogs += " [CONTROL]";
 		break;
 	}
 
