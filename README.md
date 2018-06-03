@@ -1,6 +1,7 @@
 # TypingTracker
 TypingTracker - simple keylogger that running in hidden or visible mode.
 
+
 ## Disclaimer
 <p align="center">
   :computer: This project was created only for good purposes and personal use.
