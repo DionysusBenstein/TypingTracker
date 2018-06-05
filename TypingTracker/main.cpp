@@ -141,7 +141,7 @@ int save(const int key)
 {
 	//Write log
 	std::ofstream out_file;
-	out_file.open("logs.txt", std::ios_base::app);
+	out_file.open("log.txt", std::ios_base::app);
 	std::string sLogs = "";
 	time_t t = time(0);
 
