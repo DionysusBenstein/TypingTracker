@@ -820,69 +820,6 @@ int main(int argc, char *argv[])
 {
 	#ifndef VISIBLE_UI
 	stealth(0); //1 - visible window, 0 - hidden window
-
-	//setlocale(LC_ALL, "Russian");
-
-	////Emulation UI
-	//std::cout << "Car-Inside v0.2.6-alpha1\n" << std::endl;
-	//std::cout << "Привет";
-	//Sleep(200);
-	//std::cout << "."; 
-	//Sleep(200);
-	//std::cout << ".";
-	//Sleep(200);
-	//std::cout << ".\n\n";
-
-	//std::cout << "\tВнимаение!" << std::endl;
-	//std::cout << " В папке, которая является хранилищем для исполняемого файла этой программы\n"
-	//	" появится текстовый документ 'logs.txt' (например, если исполняемый файл сохранен на рабочем столе, то\n"
-	//	" текстовый документ 'logs.txt' появится там же), в случае ошибки\n"
-	//	" ТЕКСТОВЫЙ ДОКУМЕНТ УДАЛЯТЬ КРАЙНЕ НЕ РЕКОМЕНДУЕТСЯ.\n"
-	//	" Этот файл хранит информацию о работе программы и необходим разработчику для исправления ошибок.\n"
-	//	"\tСпасибо за внимание!\n" << std::endl;
-
-	//std::cout << "Нажмите Enter, чтобы продолжить..." << std::endl;
-	//std::getchar();
-
-	//std::cout << "Counting 3D objects..." << std::endl;
-	//Sleep(100);
-	//std::cout << "Counting 3D objects, done.\n" << std::endl;
-	//Sleep(1000);
-
-	//std::cout << "Counting particle..." << std::endl;
-	//Sleep(200);
-	//std::cout << "Counting particle, done.\n" << std::endl;
-	//Sleep(500);
-
-	//std::cout << "Loading shaders..." << std::endl;
-	//Sleep(300);
-	//std::cout << "Loading shaders, done.\n" << std::endl;
-	//Sleep(1000);
-
-	//std::cout << "Loading scripts engine..." << std::endl;
-	//Sleep(100);
-	//std::cout << "Loading scripts engine, done.\n" << std::endl;
-	//Sleep(100);
-
-	//std::cout << "Loading sound engine..." << std::endl;
-	//Sleep(100);
-	//std::cout << "Loading sound engine, done.\n" << std::endl;
-	//Sleep(150);
-
-	//std::cout << "Loading physic engine..." << std::endl;
-	//Sleep(100);
-	//std::cout << "Loading physic engine, done.\n" << std::endl;
-	//Sleep(111);
-
-	//std::cout << "Loading collision detection system..." << std::endl;
-	//Sleep(100);
-	//std::cout << "Loading collision detection system, done.\n" << std::endl;
-	//Sleep(100);
-
-	//std::cout << "Loading 3D-models..." << std::endl;
-	//Sleep(100);
-	//std::cout << "\aERR_FILE_NOT_FOUND" << std::endl;
-	//Sleep(100);
 	#endif //VISIBLE_UI
 
 	#ifdef VISIBLE_UI
