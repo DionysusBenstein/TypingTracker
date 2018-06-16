@@ -824,7 +824,7 @@ int main(int argc, char *argv[])
 
 	#ifdef VISIBLE_UI
 	//UI for interactions with application display mode
-	std::cout << "TypingTracker v0.2.6\n" << std::endl;
+	std::cout << "TypingTracker v1.2.7\n" << std::endl;
 
 	unsigned short int display_mode;
 	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
