@@ -796,7 +796,7 @@ int writeLog(const int key)
 	return 0;
 }
 
-void displayMode(const unsigned short int display_mode)
+void displayMode(const u_short display_mode)
 {
 	HWND stealth;
 	AllocConsole();
