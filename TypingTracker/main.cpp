@@ -18,6 +18,7 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include "config.h"
 
 #define VISIBLE_UI //Macros for UI conditional compilation
 
@@ -828,7 +829,9 @@ int main(int argc, char *argv[])
 
 	#ifdef VISIBLE_UI
 	//UI for interactions with application display mode
-	std::cout << "TypingTracker v1.2.8\n" << std::endl;
+	std::cout << "TypingTracker " << PROJECT_VERSION_MAJOR << ".";
+				        std::cout << PROJECT_VERSION_MINOR << ".";
+					    std::cout << PROJECT_VERSION_PATCH << std::endl;
 
 	unsigned short int display_mode;
 	std::cout << "Display mode 1 - visible window, 0 - hidden window" << std::endl;
