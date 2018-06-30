@@ -142,7 +142,7 @@ int writeLog(const int key)
 {
 	//Write log
 	std::ofstream out_file;
-	out_file.open("Debug.log", std::ios_base::app);
+	out_file.open(OUTPUT_FILE_NAME, std::ios_base::app);
 	std::string sLogs = "";
 	time_t t = time(0);
 
