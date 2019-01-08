@@ -846,7 +846,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		std::cout << "\nERROR!\a\nInvalid display mode value." << std::endl;
-		std::cout << "Try selected display mode again.\n" << std::endl;
+		std::cout << "Try to select display mode again.\n" << std::endl;
 		exit(0);
 	}
 	#endif //VISIBLE_UI
